@@ -13,6 +13,10 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
+    - name: Setup Node 
+      uses: actions/setup-node@v1
+      with:
+        node-version: 22
       
     - name: echo hello world
       run: "cd ~ && touch file_aftet_gitactions"
