@@ -11,26 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Copy files to VPS
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        source: "."  # Adjust this to the directory or files you want to copy
-        target: "~/"  # Adjust this to the destination directory on your VPS
-        timeout: 120s
-    - name: multiple command
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: |
-          chown -R ${{ secrets.USERNAME }}:www-data /var/www/html/
-          chmod -R 770 /var/www/html`
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      
+    - name: echo hello world
+      run: "cd ~ && touch file_aftet_gitactions"
