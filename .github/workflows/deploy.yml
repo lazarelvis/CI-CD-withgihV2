@@ -17,17 +17,19 @@ jobs:
     - name: Copy files to VPS
       uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
         source: "public_html"  # Adjust this to the directory or files you want to copy
         target: "/var/www/domain.com/"  # Adjust this to the destination directory on your VPS
     - name: multiple command
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
         script: |
-          chown -R ${{ secrets.VPS_USER }}:www-data /var/www/domain.com/public_html
+          chown -R ${{ secrets.USERNAME }}:www-data /var/www/domain.com/public_html
           chmod -R 770 /var/www/domain.com/public_html`
