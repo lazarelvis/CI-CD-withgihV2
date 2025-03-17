@@ -35,8 +35,6 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          script: |
-          cd /var/www/html
-          touch this_is_github_stuf
+          script: "cd ~/var/www/html && touch this_is_github_stuf"
           
         
