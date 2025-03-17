@@ -22,7 +22,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         source: "."  # Adjust this to the directory or files you want to copy
-        target: "/var/www/html/"  # Adjust this to the destination directory on your VPS
+        target: "~/"  # Adjust this to the destination directory on your VPS
     - name: multiple command
       uses: appleboy/ssh-action@v1.0.3
       with:
