@@ -23,6 +23,7 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "."  # Adjust this to the directory or files you want to copy
         target: "~/"  # Adjust this to the destination directory on your VPS
+        timeout: 120s
     - name: multiple command
       uses: appleboy/ssh-action@v1.0.3
       with:
