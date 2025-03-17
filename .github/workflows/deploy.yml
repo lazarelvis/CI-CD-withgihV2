@@ -20,14 +20,14 @@ jobs:
       - name: Install NPM depennceies
         run: npm i
 
-      - name: Syncronize Files to server
-        run: easingthemes/ssh-deploy@v2.1.5
-        env: 
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SOURCE: "."
-          REMOTE_HOST: ${{ secrets.VPS_HOST }}
-          REMOTE_USER: ${{ secrets.VPS_USER }}
-          TARGET: "/var/www/html"
+      # - name: Syncronize Files to server
+      #   run: easingthemes/ssh-deploy@v2.1.5
+      #   env: 
+      #     SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+      #     SOURCE: "."
+      #     REMOTE_HOST: ${{ secrets.VPS_HOST }}
+      #     REMOTE_USER: ${{ secrets.VPS_USER }}
+      #     TARGET: "/var/www/html"
 
       - name: Run Remote/Astisan Comands
         uses: appleboy/ssh-action@v0.1.6
