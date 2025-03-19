@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ~/ # Path where you want to deploy
+            cd /home/lazarnicoleta60/app-deploy # Path where you want to deploy
             git pull origin master # or your branch
             npm install  #install production dependancies on the server.
            
