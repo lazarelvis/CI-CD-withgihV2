@@ -1,35 +1,36 @@
-name: Deploy to VPS
-
+name: Deploy Node.js App
 on:
   push:
     branches:
-      - master  # Adjust this to your main branch name
-  workflow_dispatch: 
-  
+      - master # Or your deployment branch
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-latest # Or your desired runner OS
+
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '22.x'
-    - name: Install npm dependencies
-      run: npm install
-    - name: Run build task
-      run: npm run build --if-present
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@main
-      with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SOURCE: "."
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/var/www/"
-          EXCLUDE: "/dist/, /node_modules/"
-          
-    - name: Touch file
-      run: "cd ~ && touch file_aftet_gitactions"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22' # Specify your required Node.js version
+
+      - name: Install dependencies
+        run: npm install # Or yarn install
+
+      - name: Build app (if needed)
+        run: npm run build # Or your build command
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1 #Example of an SSH action.
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/ # Path where you want to deploy
+            git pull origin master # or your branch
+            npm install  #install production dependancies on the server.
+           
